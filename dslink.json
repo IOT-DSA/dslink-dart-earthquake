@@ -1,5 +1,5 @@
 {
-  "name": "earthquakes",
+  "name": "dslink-dart-earthquakes",
   "version": "1.0.0",
   "description": "Earthquakes DSLink",
   "main": "bin/run.dart",
