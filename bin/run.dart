@@ -57,6 +57,7 @@ main(List<String> args) async {
   }, profiles: {
     "getAll": (String path) => new GetAllActionNode(path)
   });
+  
   link.connect();
   rootNode = link["/"];
 
