@@ -77,20 +77,22 @@ update() async {
   ids = features.map((it) => it["id"]).toList();
   var toRemove = rootNode.children.keys.where((it) => !ids.contains(it) && it != "Get_All").toList();
   for (var x in toRemove) {
-    rootNode.removeChild(x);
+    link.removeNode(x);
   }
 
   for (Map<String, dynamic> feature in features) {
     Map<String, dynamic> props = feature["properties"];
     String id = feature["id"];
 
-    if (!rootNode.children.containsKey(id)) {
-      link.addNode("/${id}", createEarthquakeInitializer());
+    SimpleNode n = link["/${id}"];
+
+    if (n == null) {
+      n = rootNode.createChild(id, createEarthquakeInitializer());
     }
 
-    SimpleNode node = link[id];
+    SimpleNode node = link["/${id}"];
     v(String name, dynamic value) {
-      link.updateValue("/${node.path}/${name}", value);
+      link.updateValue("${node.path}/${name}", value);
     }
 
     var coords = feature["geometry"]["coordinates"];
